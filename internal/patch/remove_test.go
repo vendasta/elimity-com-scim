@@ -43,6 +43,22 @@ func Example_removeSingleMember() {
 	// <nil> <nil>
 }
 
+// The following example shows how remove a single group from a user.
+func Example_removeSingleGroup() {
+	operation := `{
+		"op": "remove",
+		"path": "groups",
+		"value": [{
+			"$ref":  null,
+			"value": "f648f8d5ea4e4cd38e9c"
+		}]
+	}`
+	validator, _ := NewValidator(operation, schema.CoreUserSchema())
+	fmt.Println(validator.Validate())
+	// Output:
+	// [map[]] <nil>
+}
+
 // The following example shows how to replace all of the members of a group with a different members list.
 func Example_replaceAllMembers() {
 	operations := []string{`{
